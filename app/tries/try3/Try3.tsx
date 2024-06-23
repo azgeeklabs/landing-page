@@ -63,7 +63,7 @@ export default function Try3() {
   const screen4Col2 = useRef<HTMLDivElement>(null);
   const waves = useRef<HTMLDivElement>(null);
   const animateMotionRef = useRef<SVGAnimateMotionElement>(null);
-  const screen7Span = useRef<HTMLSpanElement>(null);
+  const screen7Span = useRef<HTMLDivElement>(null);
 
   // ===== Start Screen(1) =====
   useGSAP(
@@ -205,15 +205,17 @@ export default function Try3() {
   useGSAP(
     () => {
       gsap.to(screen7Span.current, {
-        scale: 30,
+        // scale: 30,
+        scale: 500,
         duration: 15,
-        delay: 0.5,
+        delay: 0.4,
         scrollTrigger: {
           trigger: screen7.current,
-          start: "-20% top",
-          end: "bottom 65%",
+          start: "-40% top",
+          // end: "bottom 65%",
+          end: "120% 65%",
           scrub: true,
-          // markers: true,
+          markers: true,
         },
         ease: "none",
       });
@@ -221,6 +223,27 @@ export default function Try3() {
     { scope: screen7 }
   );
   // ===== Start Screen(7) =====
+
+  // ===== Start Screen(8) =====
+  useGSAP(
+    () => {
+      gsap.to(screen8.current, {
+        opacity: 1,
+        // scale: 1,        
+        duration: 15,
+        delay: 0.5,
+        scrollTrigger: {
+          trigger: screen8.current,
+          start: "-10% 50%",
+          end: "bottom 65%",
+          scrub: true,
+          // markers: true,
+        },
+      });
+    },
+    { scope: screen8 }
+  );
+  // ===== Start Screen(8) =====
 
   const handleScroll = (toScreen: HTMLElement | any) => {
     toScreen.current.scrollIntoView({ behavior: "smooth" });
@@ -252,9 +275,12 @@ export default function Try3() {
             transform your digital presence and unlock your potential with a
             wide range of services.
           </p>
-         
+
           <div className="flex justify-between items-center gap-[--10px]">
-            <input className="flex-grow rounded-[--10px] p-[--10px] text-[#1c1c1c]" type="email" />
+            <input
+              className="flex-grow rounded-[--10px] p-[--10px] text-[#1c1c1c]"
+              type="email"
+            />
             <span>Sign up</span>
           </div>
         </div>
@@ -513,8 +539,9 @@ export default function Try3() {
       </section>
       {/* ===== End Screen(6) =====  */}
 
-      {/* ===== Start Screen(7) =====  */}
-      <section className="screen7" ref={screen7}>
+<div className="relative">
+        {/* ===== Start Screen(7) =====  */}
+        <section className="screen7" ref={screen7}>
         <h2>White Label</h2>
         <p className="text-center w-1/2">
           we provide top-tier, customizable solutions designed to help your
@@ -522,9 +549,11 @@ export default function Try3() {
           seamlessly integrate with your brand, giving you the power to deliver
           exceptional value to your clients while keeping your brand
         </p>
-        <span className="block" ref={screen7Span}>
-          front & center<span className="dot">.</span>
-        </span>
+        <div className="screen7Span flex gap-[--10px]" ref={screen7Span}>
+          <span className="w-[200px] text-right">front</span>
+          <span>&</span>
+          <span className="w-[200px] text-left">center</span>
+        </div>
       </section>
       {/* ===== End Screen(7) =====  */}
 
@@ -555,6 +584,7 @@ export default function Try3() {
         </div>
       </section>
       {/* ===== End Screen(8) =====  */}
+</div>
     </main>
   );
 }

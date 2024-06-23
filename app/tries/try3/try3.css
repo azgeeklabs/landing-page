@@ -334,8 +334,8 @@
   height: 100vh;
   width: 100vw;
   padding-top: var(--sy-80px);
-  /* position: relative;
-  z-index: 3; */
+  position: relative;
+  z-index: 3;
   background-color: #f8f24b;
   display: flex;
   flex-direction: column;
@@ -354,26 +354,32 @@
   font-weight: 400;
   color: #1d1d1d;
 }
-.screen7 span {
+.screen7 .screen7Span span {
   font-family: "Alfa Slab One", serif;
   font-size: var(--35px);
   font-weight: 400;
   color: #1d1d1d;
 }
-.screen7 > span > .dot {
+/* .screen7 > span > .dot {
   font-family: "Chivo", sans-serif;
-}
+} */
 /* ===== End Screen(7) =====  */
 
 /* ===== Start Screen(8) =====  */
 .screen8 {
-  /* border: 1px solid dodgerblue; */
+  border: 1px solid dodgerblue;
   height: 100vh;
   width: 100vw;
   padding: var(--40px) var(--60px);
-  /* position: relative;
-  z-index: 3; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 9;
   background-color: #1d1d1d;
+  opacity: 0;
+  /* transform: translate(-50%, -50%) scale(0); */
+  transform: translate(-50%, -50%);
+  /* transition: all 0.3s ease; */
 }
 .screen8 .screen8-content {
   display: flex;
