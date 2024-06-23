@@ -40,8 +40,12 @@
   height: 100vh;
   padding-top: var(--sy-30px);
 }
+.screen2 > div:nth-child(2) {
+  width: 30vw;
+}
 .screen2 p {
-  width: var(--635px);
+  /* width: var(--635px); */
+  /* width: 30vw; */
   font-family: "Chivo", sans-serif;
   font-weight: 400;
   font-size: var(--29px);
@@ -53,13 +57,13 @@
   color: #ffffff;
 }
 .screen2 span {
+  background-color: #f8f24b;
+  padding: var(--sy-9px) var(--20px);
+  border-radius: var(--33px);
   font-family: "Barlow", sans-serif;
-  padding: var(--sy-12px) var(--27px);
-  border-radius: var(--45px);
-  font-size: var(--22px);
+  font-size: var(--16px);
   font-weight: 700;
   color: #1c1c1c;
-  background-color: #f8f24b;
   cursor: pointer;
 }
 /* ===== End Screen(2) =====  */
@@ -84,20 +88,20 @@
   text-align: center;
   font-family: "Alfa Slab One", serif;
   font-weight: 400;
-  font-size: 146.13px;
+  font-size: var(--146px);
 }
 .screen3 ul {
   width: 85%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--sy-20px);
 }
 .screen3 li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
-  padding-bottom: 20px;
+  padding-bottom: var(--sy-20px);
 }
 .screen3 li:hover {
   /* background-color: #1d1d1d; */
@@ -106,12 +110,12 @@
 .screen3 li span:first-child {
   font-family: "Chivo", sans-serif;
   font-weight: 400;
-  font-size: 44.24px;
+  font-size: var(--44px);
   transform: translateY(0);
   transition: transform 0.5s cubic-bezier(0.01, 0.71, 0.62, 1.36);
 }
 .screen3 li:hover span:first-child {
-  transform: translateY(10px);
+  transform: translateY(var(--sy-10px));
 }
 .screen3 li span:last-child {
   cursor: pointer;
@@ -119,7 +123,7 @@
   transition: transform 0.5s cubic-bezier(0.01, 0.71, 0.6, 1.2);
 }
 .screen3 li:hover span:last-child {
-  transform: translateY(10px) rotate(-30deg);
+  transform: translateY(var(--sy-10px)) rotate(-30deg);
 }
 .screen3 li:hover span:last-child svg > g path {
   fill: #1d1d1d;
@@ -127,7 +131,6 @@
 .screen3 li:hover span:last-child svg rect {
   fill: #f8f24b;
 }
-
 .screen3 li span {
   position: relative;
   z-index: 1;
@@ -135,7 +138,7 @@
 .screen3 li::before {
   content: "";
   position: absolute;
-  bottom: -1px;
+  bottom: calc(var(--sy-1px) * -1);
   left: 0;
   width: 102%;
   height: 0;
@@ -154,7 +157,7 @@
   content: "";
   position: absolute;
   width: 102%;
-  height: 1px;
+  height: var(--sy-1px);
   background-color: #1d1d1d;
   top: 100%;
 }
@@ -165,12 +168,14 @@
   /* border: 1px solid dodgerblue; */
   height: 100vh;
   width: 100vw;
-  padding: 80px 40px;
+  padding: var(--40px) var(--60px);
+  padding-bottom: 0;
   position: relative;
   z-index: 4;
   background-color: #1d1d1d;
 }
 .screen4 .waveSVG {
+  pointer-events: none;
   position: absolute;
   left: 0;
   width: 100vw;
@@ -186,15 +191,14 @@
   justify-content: space-between;
   height: 100%;
 }
-
 .screen4 .screen4-content .screen4-col1 h2 {
   font-family: "Alfa Slab One", serif;
-  font-size: 128px;
+  font-size: var(--128px);
   font-weight: 400;
 }
 .screen4 .screen4-content .screen4-col1 p {
   font-family: "Alfa Slab One", serif;
-  font-size: 102.18px;
+  font-size: var(--102px);
   font-weight: 400;
   color: #ffffff3b;
 }
@@ -214,7 +218,8 @@
   /* border: 1px solid dodgerblue; */
   height: 100vh;
   width: 100vw;
-  padding: 80px 40px;
+  padding: var(--40px) var(--60px);
+  padding-bottom: 0;
   position: relative;
   z-index: 5;
   background-color: #1d1d1d;
@@ -231,35 +236,35 @@
 }
 .screen5 .screen5-col1-up > p {
   font-family: "Alfa Slab One", serif;
-  font-size: 102.18px;
+  font-size: var(--102px);
   font-weight: 400;
   color: #ffffff3b;
-  margin-bottom: 50px;
+  margin-bottom: var(--sy-50px);
 }
 .screen5 .screen5-col1-up > div > p {
   font-family: "Chivo", sans-serif;
-  font-size: 25.57px;
+  font-size: var(--25px);
   font-weight: 400;
-  margin-bottom: 35px;
+  margin-bottom: var(--sy-35px);
 }
 .screen5 .screen5-col1-up > div > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: var(--10px);
 }
 .screen5 .screen5-col1-up > div > div input {
   flex-grow: 1;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: var(--10px);
+  padding: var(--10px);
   color: #1c1c1c;
 }
 .screen5 .screen5-col1-up > div > div span {
   background-color: #f8f24b;
-  padding: 9px 20px 9px 20px;
-  border-radius: 33px;
+  padding: var(--sy-9px) var(--20px);
+  border-radius: var(--33px);
   font-family: "Barlow", sans-serif;
-  font-size: 16x;
+  font-size: var(--16px);
   font-weight: 700;
   color: #1c1c1c;
   cursor: pointer;
@@ -280,19 +285,19 @@
   /* border: 1px solid dodgerblue; */
   height: 100vh;
   width: 100vw;
-  padding: 80px 40px;
+  padding: var(--40px) var(--60px);
   background-color: #1d1d1d;
   position: relative;
 }
 .screen6 .screen6-content {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 150px;
+  justify-content: space-between;
+  gap: 15vw;
 }
 .screen6 .screen6-content > div:first-child h2 {
   font-family: "Alfa Slab One", serif;
-  font-size: 128px;
+  font-size: var(--128px);
   font-weight: 400;
 }
 .screen6 .screen6-content > div:nth-child(2) {
@@ -303,16 +308,16 @@
 }
 .screen6 .screen6-content > div:nth-child(2) p {
   font-family: "Chivo", sans-serif;
-  font-size: 29.76px;
+  font-size: var(--29px);
   font-weight: 400;
-  margin-bottom: 20px;
+  margin-bottom: var(--sy-20px);
 }
 .screen6 .screen6-content > div:nth-child(2) span {
   background-color: #f8f24b;
-  padding: 9px 20px;
-  border-radius: 33px;
+  padding: var(--sy-9px) var(--20px);
+  border-radius: var(--33px);
   font-family: "Barlow", sans-serif;
-  font-size: 16x;
+  font-size: var(--16px);
   font-weight: 700;
   color: #1c1c1c;
   cursor: pointer;
@@ -328,29 +333,30 @@
   /* border: 1px solid dodgerblue; */
   height: 100vh;
   width: 100vw;
-  padding-top: 80px;
+  padding-top: var(--sy-80px);
   /* position: relative;
   z-index: 3; */
   background-color: #f8f24b;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: var(--sy-40px);
 }
 .screen7 h2 {
   font-family: "Alfa Slab One", serif;
-  font-size: 128px;
+  font-size: var(--128px);
   font-weight: 400;
   color: #1d1d1d;
 }
 .screen7 p {
   font-family: "Chivo", sans-serif;
-  font-size: 25.57px;
+  font-size: var(--25px);
   font-weight: 400;
   color: #1d1d1d;
 }
 .screen7 span {
   font-family: "Alfa Slab One", serif;
-  font-size: 35.03px;
+  font-size: var(--35px);
   font-weight: 400;
   color: #1d1d1d;
 }
@@ -364,7 +370,7 @@
   /* border: 1px solid dodgerblue; */
   height: 100vh;
   width: 100vw;
-  padding: 80px 40px;
+  padding: var(--40px) var(--60px);
   /* position: relative;
   z-index: 3; */
   background-color: #1d1d1d;
@@ -382,34 +388,34 @@
 }
 .screen8 .screen8-content > div:first-child > p {
   font-family: "Alfa Slab One", serif;
-  font-size: 90.28px;
+  font-size: var(--90px);
   font-weight: 400;
   color: #f8f24b;
-  margin-bottom: 60px;
+  margin-bottom: var(--sy-60px);
 }
 .screen8 .screen8-content > div:first-child > div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 35px;
+  gap: var(--sy-35px);
 }
 .screen8 .screen8-content > div:first-child > div p {
   font-family: "Chivo", sans-serif;
-  font-size: 25.57px;
+  font-size: var(--25px);
   font-weight: 400;
 }
 .screen8 .screen8-content > div:first-child > div input {
   flex-grow: 1;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: var(--10px);
+  padding: var(--10px);
   color: #1c1c1c;
 }
 .screen8 .screen8-content > div:first-child > div span {
   background-color: #f8f24b;
-  padding: 9px 20px 9px 20px;
-  border-radius: 33px;
+  padding: var(--sy-9px) var(--20px);
+  border-radius: var(--33px);
   font-family: "Barlow", sans-serif;
-  font-size: 16x;
+  font-size: var(--16px);
   font-weight: 700;
   color: #1c1c1c;
   cursor: pointer;

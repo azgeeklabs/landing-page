@@ -8,8 +8,7 @@ import "./try3.css";
 
 const arrow = (
   <svg
-    width="78"
-    height="78"
+    className="w-[--78px] h-[--78px]"
     viewBox="0 0 78 78"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +69,8 @@ export default function Try3() {
   useGSAP(
     () => {
       gsap.to(ref.current, {
-        paddingLeft: "+=1000px",
+        // paddingLeft: "+=1000px",
+        paddingLeft: "+=51%",
         duration: 2,
         delay: 0.25,
         scrollTrigger: {
@@ -156,7 +156,7 @@ export default function Try3() {
   useEffect(() => {
     const svg = svgRef.current;
     if (svg) {
-      const svgHeight = svg.getBoundingClientRect().height;
+      const svgHeight = svg.getBoundingClientRect().height - 5;
       svg.style.top = `-${svgHeight}px`;
     }
   }, []);
@@ -240,7 +240,7 @@ export default function Try3() {
       {/* ===== Start Screen(2) ===== */}
       <section className="screen2" ref={screen2}>
         <div>
-          <img src="/assets/logo.svg" alt="logo" />
+          <img src="/assets/logo.svg" className="w-[--411px]" alt="logo" />
         </div>
         <div>
           <p ref={ref2}>
@@ -252,7 +252,11 @@ export default function Try3() {
             transform your digital presence and unlock your potential with a
             wide range of services.
           </p>
-          <span onClick={() => handleScroll(screen8)}>Start Now!</span>
+         
+          <div className="flex justify-between items-center gap-[--10px]">
+            <input className="flex-grow rounded-[--10px] p-[--10px] text-[#1c1c1c]" type="email" />
+            <span>Sign up</span>
+          </div>
         </div>
       </section>
       {/* ===== End Screen(2) ===== */}
@@ -276,7 +280,7 @@ export default function Try3() {
       </section>
       {/* ===== End Screen(3) ===== */}
       {/* ===== Start Screen(4) =====  */}
-      <section className="screen4" ref={screen4}>
+      <section className="screen4 " ref={screen4}>
         <svg
           className="waveSVG"
           ref={svgRef}
@@ -296,7 +300,7 @@ export default function Try3() {
           <div className="screen4-col1">
             <h2>Services</h2>
             <div
-              className="h-[39vh] elementsFallingContainer"
+              className="h-[44vh] elementsFallingContainer"
               ref={elementsFallingContainer}
             >
               {/* <img src="/assets/Frame1171275888.png" alt="" /> */}
@@ -414,8 +418,8 @@ export default function Try3() {
             </p>
           </div>
 
-          <div className="screen4-col2" ref={screen4Col2}>
-            <img src="/assets/Group1171275867.png" alt="TODO" />
+          <div className="screen4-col2 w-1/2" ref={screen4Col2}>
+            <img src="/assets/Group1171275867.png" className="" alt="TODO" />
           </div>
         </div>
       </section>
@@ -438,7 +442,7 @@ export default function Try3() {
                 </p>
                 <div>
                   <input type="email" />
-                  <span>Start Now!</span>
+                  <span>Sign up</span>
                 </div>
               </div>
             </div>
@@ -446,7 +450,7 @@ export default function Try3() {
               <img src="/assets/services-stack.svg" alt="" />
             </div>
           </div>
-          <div>
+          <div className="w-1/2">
             <img src="/assets/Group1171275867.png" alt="TODO" />
           </div>
         </div>
@@ -510,7 +514,7 @@ export default function Try3() {
       {/* ===== End Screen(6) =====  */}
 
       {/* ===== Start Screen(7) =====  */}
-      <section className="screen7 space-y-10" ref={screen7}>
+      <section className="screen7" ref={screen7}>
         <h2>White Label</h2>
         <p className="text-center w-1/2">
           we provide top-tier, customizable solutions designed to help your
@@ -539,13 +543,13 @@ export default function Try3() {
                 <br />
                 community and elevate your business to new heights.
               </p>
-              <div className="flex gap-[10px]">
+              <div className="flex gap-[--10px]">
                 <input type="email" />
-                <span>Start Now!</span>
+                <span>Sign up</span>
               </div>
             </div>
           </div>
-          <div>
+          <div className="w-[40%]">
             <img src="/assets/bg-1.svg" alt="" />
           </div>
         </div>
