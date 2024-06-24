@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Draggable } from "gsap/Draggable";
+import Lenis from "lenis";
 import "./try3.css";
 
 const arrow = (
@@ -45,6 +46,56 @@ if (typeof window !== "undefined") {
 }
 
 export default function Try3() {
+  const lenisRef = useRef<Lenis | null>(null);
+
+  useEffect(() => {
+    /* ===== Start Lenis ===== */
+    // Initialize Lenis
+    const lenis = new Lenis();
+    lenisRef.current = lenis;
+
+    // lenis.on("scroll", (e: Event) => {
+    //   // console.log(e)
+    // });
+
+    // Update ScrollTrigger on scroll
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Add GSAP ticker
+    // gsap.ticker.add((time) => {
+    //   lenis.raf(time * 1000);
+    // });
+
+    const onTick = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(onTick);
+
+    // Disable lag smoothing
+    gsap.ticker.lagSmoothing(0);
+
+    // Cleanup on unmount
+    return () => {
+      gsap.ticker.remove(onTick);
+      lenis.destroy();
+    };
+    /* ===== End Lenis ===== */
+  }, []);
+
+  // handleScroll
+  // const handleScroll = (toScreen: HTMLElement | any) => {
+  //   toScreen.current.scrollIntoView({ behavior: "smooth" });
+  // };
+
+  const handleScroll = (toScreen: HTMLElement | any) => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(toScreen.current, {
+        duration: 1.5,
+        // easing: (t) => t, // Customize easing function if needed
+      });
+    }
+  };
+
   const screen1 = useRef<HTMLElement | any>(null);
   const ref = useRef(null);
   const screen2 = useRef<HTMLElement | any>(null);
@@ -255,7 +306,7 @@ export default function Try3() {
       gsap.to(screen7.current, {
         scrollTrigger: {
           trigger: screen7.current,
-          start: "-10% top",
+          start: "-20% top",
           // end: "bottom 65%",
           // end: "120% 65%",
           toggleClass: "black",
@@ -301,10 +352,6 @@ export default function Try3() {
     { scope: screen8 }
   );
   // ===== Start Screen(8) =====
-
-  const handleScroll = (toScreen: HTMLElement | any) => {
-    toScreen.current.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <main className="overflow-hidden">
