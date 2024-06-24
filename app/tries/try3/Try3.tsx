@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -46,24 +46,23 @@ if (typeof window !== "undefined") {
 
 export default function Try3() {
   const screen1 = useRef<HTMLElement | any>(null);
-  const screen2 = useRef<HTMLElement | any>(null);
-  const screen3 = useRef<HTMLElement | any>(null);
-  const screen4 = useRef<HTMLElement | any>(null);
-  const screen5 = useRef<HTMLElement | any>(null);
-  const screen6 = useRef<HTMLElement | any>(null);
-  const screen7 = useRef<HTMLElement | any>(null);
-  const screen8 = useRef<HTMLElement | any>(null);
-
   const ref = useRef(null);
+  const screen2 = useRef<HTMLElement | any>(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
+  const screen3 = useRef<HTMLElement | any>(null);
+  const screen4 = useRef<HTMLElement | any>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const text2Ref = useRef<HTMLParagraphElement>(null);
   const elementsFallingContainer = useRef<HTMLDivElement>(null);
   const screen4Col2 = useRef<HTMLDivElement>(null);
+  const screen5 = useRef<HTMLElement | any>(null);
+  const screen6 = useRef<HTMLElement | any>(null);
   const waves = useRef<HTMLDivElement>(null);
   const animateMotionRef = useRef<SVGAnimateMotionElement>(null);
+  const screen7 = useRef<HTMLElement | any>(null);
   const screen7Span = useRef<HTMLDivElement>(null);
+  const screen8 = useRef<HTMLElement | any>(null);
 
   // ===== Start Screen(1) =====
   useGSAP(
@@ -156,9 +155,25 @@ export default function Try3() {
   useEffect(() => {
     const svg = svgRef.current;
     if (svg) {
-      const svgHeight = svg.getBoundingClientRect().height - 5;
+      const svgHeight = svg.getBoundingClientRect().height - 3;
       svg.style.top = `-${svgHeight}px`;
     }
+    // Reload the page when the window is resized
+    let resizeTimeout: NodeJS.Timeout; // Explicitly type the variable
+
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        window.location.reload();
+      }, 500); // Adjust the timeout as needed
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   useGSAP(
@@ -194,6 +209,11 @@ export default function Try3() {
           if (animateMotionRef.current) {
             animateMotionRef.current.beginElement();
           }
+          setTimeout(() => {
+            if (animateMotionRef.current) {
+              animateMotionRef.current.beginElement();
+            }
+          }, 250);
         },
       });
     },
@@ -213,15 +233,50 @@ export default function Try3() {
           trigger: screen7.current,
           start: "-40% top",
           // end: "bottom 65%",
-          end: "120% 65%",
+          // end: "120% 65%",
           scrub: true,
-          markers: true,
+          // markers: true,
         },
         ease: "none",
+        onStart: () => {
+          if (animateMotionRef.current) {
+            animateMotionRef.current.beginElement();
+          }
+        },
       });
     },
     { scope: screen7 }
   );
+
+  const [isBlack, setIsBlack] = useState(false);
+
+  useGSAP(
+    () => {
+      gsap.to(screen7.current, {
+        scrollTrigger: {
+          trigger: screen7.current,
+          start: "-10% top",
+          // end: "bottom 65%",
+          // end: "120% 65%",
+          toggleClass: "black",
+          scrub: true,
+          // markers: true,
+        },
+        ease: "none",
+        onStart: () => {
+          setIsBlack(true);
+        },
+        onReverseComplete: () => {
+          if (animateMotionRef.current) {
+            animateMotionRef.current.beginElement();
+          }
+          setIsBlack(false);
+        },
+      });
+    },
+    { scope: screen7 }
+  );
+
   // ===== Start Screen(7) =====
 
   // ===== Start Screen(8) =====
@@ -229,13 +284,15 @@ export default function Try3() {
     () => {
       gsap.to(screen8.current, {
         opacity: 1,
-        // scale: 1,        
+        // scale: 1,
         duration: 15,
         delay: 0.5,
         scrollTrigger: {
           trigger: screen8.current,
-          start: "-10% 50%",
-          end: "bottom 65%",
+          // start: "-10% 50%",
+          start: "-10% top",
+          // end: "bottom 65%",
+          end: "65% 65%",
           scrub: true,
           // markers: true,
         },
@@ -331,8 +388,7 @@ export default function Try3() {
             >
               {/* <img src="/assets/Frame1171275888.png" alt="" /> */}
               <svg
-                width="163"
-                height="81"
+                className="w-[var(--163px)] h-[var(--81px)]"
                 viewBox="0 0 163 81"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -351,8 +407,7 @@ export default function Try3() {
                 />
               </svg>
               <svg
-                width="389"
-                height="83"
+                className="w-[var(--389px)] h-[var(--83px)]"
                 viewBox="0 0 389 83"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -371,8 +426,7 @@ export default function Try3() {
                 />
               </svg>
               <svg
-                width="202"
-                height="89"
+                className="w-[--202px] h-[--89px]"
                 viewBox="0 0 202 89"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -391,8 +445,7 @@ export default function Try3() {
                 />
               </svg>
               <svg
-                width="319"
-                height="80"
+                className="w-[var(--319px)] h-[var(--80px)]"
                 viewBox="0 0 319 80"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -411,8 +464,7 @@ export default function Try3() {
                 />
               </svg>
               <svg
-                width="130"
-                height="75"
+                className="w-[var(--130px)] h-[var(--75px)]"
                 viewBox="0 0 130 75"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -523,7 +575,11 @@ export default function Try3() {
               <path id="motionpath" d="M -466 0 0 0" />
             </defs>
             <g>
-              <use xlinkHref="#wavepath" y="414" fill="#f8f24b">
+              <use
+                xlinkHref="#wavepath"
+                y="414"
+                fill={isBlack ? "#1d1d1d" : "#f8f24b"}
+              >
                 <animateMotion
                   ref={animateMotionRef}
                   dur="11s"
@@ -539,52 +595,52 @@ export default function Try3() {
       </section>
       {/* ===== End Screen(6) =====  */}
 
-<div className="relative">
+      <div className="relative">
         {/* ===== Start Screen(7) =====  */}
         <section className="screen7" ref={screen7}>
-        <h2>White Label</h2>
-        <p className="text-center w-1/2">
-          we provide top-tier, customizable solutions designed to help your
-          business thrive without the hassle. Our services are crafted to
-          seamlessly integrate with your brand, giving you the power to deliver
-          exceptional value to your clients while keeping your brand
-        </p>
-        <div className="screen7Span flex gap-[--10px]" ref={screen7Span}>
-          <span className="w-[200px] text-right">front</span>
-          <span>&</span>
-          <span className="w-[200px] text-left">center</span>
-        </div>
-      </section>
-      {/* ===== End Screen(7) =====  */}
+          <h2>White Label</h2>
+          <p className="text-center w-1/2">
+            we provide top-tier, customizable solutions designed to help your
+            business thrive without the hassle. Our services are crafted to
+            seamlessly integrate with your brand, giving you the power to
+            deliver exceptional value to your clients while keeping your brand
+          </p>
+          <div className="screen7Span flex gap-[--10px]" ref={screen7Span}>
+            <span className="w-[--200px] text-right">front</span>
+            <span>&</span>
+            <span className="w-[--200px] text-left">center</span>
+          </div>
+        </section>
+        {/* ===== End Screen(7) =====  */}
 
-      {/* ===== Start Screen(8) =====  */}
-      <section className="screen8" ref={screen8}>
-        <div className="screen8-content">
-          <div>
-            <p>
-              DON’T MISS
-              <br />
-              OUT ON US!
-            </p>
+        {/* ===== Start Screen(8) =====  */}
+        <section className="screen8" ref={screen8}>
+          <div className="screen8-content">
             <div>
               <p>
-                Enter your email below to join Creative Juice Box
+                DON’T MISS
                 <br />
-                community and elevate your business to new heights.
+                OUT ON US!
               </p>
-              <div className="flex gap-[--10px]">
-                <input type="email" />
-                <span>Sign up</span>
+              <div>
+                <p>
+                  Enter your email below to join Creative Juice Box
+                  <br />
+                  community and elevate your business to new heights.
+                </p>
+                <div className="flex gap-[--10px]">
+                  <input type="email" />
+                  <span>Sign up</span>
+                </div>
               </div>
             </div>
+            <div className="w-[40%]">
+              <img src="/assets/bg-1.svg" alt="" />
+            </div>
           </div>
-          <div className="w-[40%]">
-            <img src="/assets/bg-1.svg" alt="" />
-          </div>
-        </div>
-      </section>
-      {/* ===== End Screen(8) =====  */}
-</div>
+        </section>
+        {/* ===== End Screen(8) =====  */}
+      </div>
     </main>
   );
 }
