@@ -195,3 +195,42 @@ html.lenis body {
   pointer-events: none;
 }
 /* ===== End Lenis ===== */
+
+/* ===== Start LandingPage Slider ===== */
+.landingpage-swiper.swiper {
+  /* width: 45vw; */
+}
+
+.landingpage-swiper.swiper .swiper-slide {
+  width: 90% !important;
+  transform: translateX(0) scale(0.7);
+}
+
+.landingpage-swiper.swiper .swiper-slide.swiper-slide-prev {
+  transform: translateX(80%) scale(0.7);
+  transition: all 0.5s;
+}
+
+.landingpage-swiper.swiper .swiper-slide.swiper-slide-next {
+  transform: translateX(-80%) scale(0.7);
+  transition: all 0.5s;
+}
+
+.landingpage-swiper.swiper .swiper-slide.swiper-slide-active {
+  transform: translateX(0) scale(1);
+  transition: all 0.5s;
+  position: relative;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.landingpage-swiper.swiper .slide {
+  border-radius: var(--18px);
+}
+.landingpage-swiper-btns button{
+  font-family: "Barlow", sans-serif;
+}
+
+/* ===== End LandingPage Slider ===== */

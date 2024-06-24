@@ -204,6 +204,7 @@
 }
 .screen4 .screen4-content .screen4-col2 {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   /* background-image: url("/assets/bg.svg");

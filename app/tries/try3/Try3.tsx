@@ -5,7 +5,13 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Draggable } from "gsap/Draggable";
 import Lenis from "lenis";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import SwiperCore from "swiper";
 import "./try3.css";
+import classNames from "classnames";
 
 const arrow = (
   <svg
@@ -93,6 +99,37 @@ export default function Try3() {
         duration: 1.5,
         // easing: (t) => t, // Customize easing function if needed
       });
+    }
+  };
+
+  const swiperRef = useRef<SwiperCore | null>(null);
+
+  const slides = [
+    "/assets/landing-slide-1.png",
+    "/assets/landing-slide-2.png",
+    "/assets/landing-slide-3.png",
+    "/assets/landing-slide-4.png",
+    "/assets/landing-slide-5.png",
+    "/assets/landing-slide-6.png",
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
+
+  const handleSlide = (direction: "prev" | "next") => {
+    if (direction === "prev" && currentSlide > 0) {
+      const newSlide = currentSlide - 1;
+      setCurrentSlide(newSlide);
+      console.log(newSlide); // Log the updated slide index
+      if (swiperRef.current) {
+        swiperRef.current.slideTo(newSlide); // Use updated slide index
+      }
+    } else if (direction === "next" && currentSlide < slides.length - 1) {
+      const newSlide = currentSlide + 1;
+      setCurrentSlide(newSlide);
+      console.log(newSlide); // Log the updated slide index
+      if (swiperRef.current) {
+        swiperRef.current.slideTo(newSlide); // Use updated slide index
+      }
     }
   };
 
@@ -544,7 +581,51 @@ export default function Try3() {
           </div>
 
           <div className="screen4-col2 w-1/2" ref={screen4Col2}>
-            <img src="/assets/Group1171275867.png" className="" alt="TODO" />
+            {/* <img src="/assets/Group1171275867.png" className="" alt="TODO" /> */}
+            <Swiper
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper;
+              }}
+              speed={500}
+              initialSlide={0}
+              effect={"coverflow"}
+              // grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={"auto"}
+              loop={false}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              pagination={true}
+              allowTouchMove={false} // Disable slide navigation by mouse drag
+              // modules={[EffectCoverflow, Pagination]}
+              className="mySwiper landingpage-swiper"
+            >
+              {slides.map((e, i) => (
+                <SwiperSlide key={i}>
+                  <div>
+                    <img src={e} className={`slide slide${i} `} />
+                    {/* or currentSlide state */}
+                    {currentSlide === i && (
+                      <div className="landingpage-swiper-btns w-[86.5%] ml-auto relative z-40 bottom-[--60px] -left-[--26px]">
+                        <button onClick={() => handleSlide("prev")}
+                        className={classNames("bg-[#484848] px-[--30px] py-[--6px] font-semibold rounded-[var(--41px)] cursor-pointer float-start", currentSlide === 0 && "hidden")}
+                        >
+                          Back
+                        </button>
+                        <button onClick={() => handleSlide("next")} className={classNames("bg-[var(--highlight-yellow)] px-[--30px] py-[--6px] font-bold rounded-[var(--41px)] text-[var(--primary-black)] cursor-pointer float-end", currentSlide === slides.length - 1 && "hidden")}>
+                          Next
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       </section>
